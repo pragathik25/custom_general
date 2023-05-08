@@ -1,0 +1,27 @@
+custom_general.hello_world:
+  path: '/hello-world'
+  defaults:
+    _controller: '\Drupal\custom_general\Controller\CustomController::hello'
+    _title: 'hello world'
+  requirements:
+    _permission: 'custom general controller permission'
+
+
+custom_general.custom_form:
+  path: "/custom-form"
+  defaults:
+    _form: '\Drupal\custom_general\Form\CustomForm'
+    _title: "custom user details "
+  requirements:
+    _permission: "access content"
+
+
+custom_general.config_form:
+  path: '/config-form'
+  defaults:
+    _form: '\Drupal\custom_general\Form\ConfigForm'
+    _title: 'config user details'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE

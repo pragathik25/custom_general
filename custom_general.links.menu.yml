@@ -1,0 +1,14 @@
+custom_general.admin:
+  title: 'parent menu'
+  description: 'Manage example settings for your site'
+  route_name: 'node.add_page'
+  menu_name: main
+
+custom_general.admin1:
+  title: 'child menu'
+  parent: custom_general.admin
+  description: 'Manage example settings for your site'
+  route_name: 'node.add_page'
+  menu_name: main
+
+

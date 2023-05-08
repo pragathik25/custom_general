@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * Implement hook_schema().
+ */
+
+function custom_general_schema() {
+    $schema['user_details'] = [
+        'description' => 'custom user details',
+        'fields' => [
+            'id' => [
+                'description' => 'Holds the id',
+                'type' => 'serial',
+                'not null' => true,
+                'unsigned' => true,
+            ],
+            'name' => [
+                'description' => 'user name',
+                'type' => 'varchar',
+                'length' => 50,
+                'not null' => true,
+            ],
+            'usn' => [
+                'description' => 'User usn',
+                'type' => 'varchar',
+                'length' => 50,
+                'not null' => true,
+            ],
+            'email' => [
+                'description' => 'User email',
+                'type' => 'varchar',
+                'length' => 50,
+                'not null' => true,
+            ],
+            'place'=>[
+                'description'=>'place of the user',
+                'type'=>'varchar',
+                'length'=>60,
+                'not null'=>true,
+            ],
+        ],
+        'primary key' => ['id'],
+    ];
+    return $schema;
+}
+
+
+
+/**
+ * Implements hook_install().
+ */
+
+ function custom_general_install() {
+    // exit;
+    }
+
+
+    /**
+     * Implements hook_uninstall().
+     */
+    function custom_general_uninstall() {
+        // exit;
+    }

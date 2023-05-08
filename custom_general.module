@@ -1,0 +1,115 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+/**
+ * implements hook_form_alter
+ */
+
+function custom_general_form_alter(&$form,FormStateInterface $form_state, $form_id) {
+   //print_r($form_id);exit;
+    // $data = \Drupal::service('custom_service')->getData();
+    // print_r($data);
+    //exit;
+//    if($form_id=="node_article_form"||$form_id=="node_article_edit_form"){
+//    print_r(array_keys($form));
+//    $form['field_list']['widget']['#title']="list text";
+//    $form['field_list']['widget']['#description']="hello";
+//    unset($form['field_list']['widget']['#options']['1']);
+//    $form['field_list']['widget']['#default_value']=["2"];
+   //print_r($form['field_list']['widget']);
+
+   // $form['field_tags']['widget']['target_id']['#title']="title changed";
+   //print_r($form['field_tags']['widget']);
+
+  // $form['title']['widget'][0]['value']['#default_value']="default value for title";
+   //print_r($form['title']['widget']);
+//    $route= \Drupal::routeMatch()->getRouteName();
+//    print_r($route);
+//    exit;
+  // }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+
+
+function custom_general_entity_insert(EntityInterface $entity) {
+
+  //exit;
+}
+
+
+
+/**
+    * Implements hook_entity_presave().
+    */
+
+function custom_general_entity_presave(EntityInterface $entity) {
+//    print_r($entity->get("field_date")->getValue());
+//    $entity->set("title", "new value");
+//   $entity->set("field_date", "2023-04-26T08:26:04");
+
+//    exit;
+}
+
+function custom_general_cron() {
+       // exit;
+}
+
+
+
+
+/**
+   * implements hook_entity_view_alter().
+   */
+function custom_general_entity_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+    if($entity->getEntityTypeId()=="node"){
+         // print_r(array_keys($build));
+         // exit;
+        $build['field_list']['#title']="list title changed";
+        unset($build['field_date']);
+        $build['markup']=[
+            "#markup"=> "<i><b>hook testing</b></i>",
+        ];
+    }
+}
+
+
+function custom_general_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  // condition entity type = node
+    $session = \Drupal::request()->getSession();
+    $counts = $session->get("custom_general.node_view_count", []);
+    if (!isset($counts[$entity->id()])) {
+        $counts[$entity->id()] = 1;
+    }
+    else {
+        $counts[$entity->id()]++;
+    }
+
+    $session->set("custom_general.node_view_count", $counts);
+        $build['count'] = [
+        '#markup' => "Viewed this content for " . $counts[$entity->id()] . " times"."<br>",
+        '#cache' => [
+            'max-age' => 0,
+        ],
+    ];
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function custom_general_theme($existing, $type, $theme, $path) {
+
+    return [
+        'block_plugin_template' => [
+        'variables' => [
+            'text' => "",
+            'hexcode' => "",
+        ],
+    ],
+];
+
+}

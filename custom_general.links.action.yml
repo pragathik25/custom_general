@@ -1,0 +1,14 @@
+add_content.article:
+  route_name: "node.add"
+  title: "Add Article"
+  appears_on:
+    - "system.admin_content"
+  route_parameters:
+    node_type: article
+
+
+custom_general.block:
+  route_name: "block_content.add_page"
+  title: "Action button demo"
+  appears_on:
+    - "entity.block_content.collection"

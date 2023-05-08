@@ -1,0 +1,15 @@
+uuid: 695a3eab-81e3-414d-bed9-8a5a4581399b
+langcode: en
+status: true
+dependencies: {  }
+name: new_image_stsle
+label: 'new image stsle'
+effects:
+  07a82cb1-52a5-4d32-8d5b-1746a5da7782:
+    uuid: 07a82cb1-52a5-4d32-8d5b-1746a5da7782
+    id: image_scale
+    weight: 1
+    data:
+      width: 400
+      height: 400
+      upscale: false
